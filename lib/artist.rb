@@ -1,20 +1,33 @@
-class Artist 
-  attr_accessor :songs, :name
-  
-  @@class = []
-  
+class Artist
+  attr_accessor :name
+
+  @@all = []
+
   def initialize(name)
     @name = name
-    @songs = []
+    @@all << self
   end
-  
-  def add_song(song, artist)
-    @song = song
+
+  def self.all
+    @@all
+  end
+
+  def add_song(song)
     song.artist = self
   end
-  
-  def song
-    @songs
+
+  def add_song_by_name(name)
+    name = Song.new(name)
+    name.artist = self
   end
-    
+
+  def songs
+    Song.all.select {|song| song.artist == self}
+  end
+
+  def self.song_count
+    Song.all.count
+  end
 end
+
+#Not sure why these are failing, boooo
