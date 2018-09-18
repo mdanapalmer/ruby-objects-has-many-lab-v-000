@@ -1,13 +1,15 @@
-
 class Song 
   attr_accessor :name, :artist 
-
+  
   @@all = []
-
-  def initialize(name, artist=nil)
+  
+  def initialize (name)
     @name = name
-    @artist = artist
     @@all << self
+  end
+  
+  def self.all
+    @@all
   end
 
   def artist_name
@@ -16,9 +18,5 @@ class Song
     else
       nil
     end
-  end
-
-  def self.all
-    @@all
   end
 end
